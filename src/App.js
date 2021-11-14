@@ -1,23 +1,36 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
-import mole from "./assets/mole.svg";
+import { Outlet, NavLink, useSearchParams } from "react-router-dom";
+
+// https://guappjolotas-ac.herokuapp.com/products/
 
 const App = () => {
+  let [searchParams, setSearchParams] = useSearchParams();
   return (
     <>
       <header>
-        <Link to="">
-          <img src={mole} style={{ opacity: "0.1" }} />
-        </Link>
-        <Link to="">Carrito</Link>
+        <NavLink to="">
+          <img src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png" />
+        </NavLink>
+        <NavLink to="">Carrito</NavLink>
       </header>
       <main>
         <h1>Soy App</h1>
-        <input type="text" />
+        <input
+          type="text"
+          value={searchParams.get("filter") || ""}
+          onChange={(e) => {
+            let filter = e.target.value;
+            if (filter) {
+              setSearchParams({ filter });
+            } else {
+              setSearchParams({});
+            }
+          }}
+        />
         <nav>
-          <Link to="">Guajolotas</Link>
-          <Link to="">Bebidas</Link>
-          <Link to="">tamales</Link>
+          <NavLink to="/guajolotas">Guajolotas</NavLink>
+          <NavLink to="/bebidas">Bebidas</NavLink>
+          <NavLink to="/tamales">tamales</NavLink>
         </nav>
         <Outlet />
       </main>
