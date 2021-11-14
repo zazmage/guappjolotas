@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
+import mole from "./assets/mole.svg";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Link to="">
+          <img src={mole} style={{ opacity: "0.1" }} />
+        </Link>
+        <Link to="">Carrito</Link>
       </header>
-    </div>
+      <main>
+        <h1>Soy App</h1>
+        <input type="text" />
+        <nav>
+          <Link to="">Guajolotas</Link>
+          <Link to="">Bebidas</Link>
+          <Link to="">tamales</Link>
+        </nav>
+        <Outlet />
+      </main>
+    </>
   );
-}
+};
 
 export default App;
