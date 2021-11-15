@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import {
+  Link,
   NavLink,
   Outlet,
   useSearchParams,
   useLocation,
 } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import Product from "./product";
+import Product from "./Product";
 
 // https://guappjolotas-ac.herokuapp.com/products/
 
@@ -21,7 +22,11 @@ const Products = () => {
       {data === null ? (
         <p>Cargando...</p>
       ) : location.pathname === "/" ? (
-        data.guajolotas.map((el) => <Product key={el.id} props={el} />)
+        data.guajolotas.map((el) => (
+          <Link key={el.id} to={`/compras/guajolotas?product=${el.name}`}>
+            <Product props={el} />
+          </Link>
+        ))
       ) : (
         data[location.pathname.slice(1)]
           .filter((el) => {
@@ -33,7 +38,14 @@ const Products = () => {
               name.includes(filter.toLocaleLowerCase())
             );
           })
-          .map((el) => <Product key={el.id} props={el} />)
+          .map((el) => (
+            <Link
+              key={el.id}
+              to={`/compras/${location.pathname.slice(1)}?product=${el.name}`}
+            >
+              <Product props={el} />
+            </Link>
+          ))
       )}
     </div>
   );

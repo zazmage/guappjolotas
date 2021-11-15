@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, NavLink, useSearchParams } from "react-router-dom";
+import { Outlet, NavLink, useSearchParams, Link } from "react-router-dom";
 
 // https://guappjolotas-ac.herokuapp.com/products/
 
@@ -8,10 +8,13 @@ const App = () => {
   return (
     <>
       <header>
-        <NavLink to="">
-          <img src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png" />
-        </NavLink>
-        <NavLink to="">Carrito</NavLink>
+        <Link to="/">
+          <img
+            src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png"
+            alt="Guappjolotas"
+          />
+        </Link>
+        <Link to="/carrito">Carrito</Link>
       </header>
       <main>
         <h1>Soy App</h1>

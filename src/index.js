@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Products from "./routes/products";
+import Products from "./routes/Products";
+import Purchase from "./routes/Purchase";
+import ShoppingCart from "./routes/ShoppingCart";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,6 +16,10 @@ ReactDOM.render(
           <Route path="/bebidas" element={<Products />} />
           <Route path="/tamales" element={<Products />} />
         </Route>
+        <Route path="/compras">
+          <Route path=":productType" element={<Purchase />} />
+        </Route>
+        <Route path="/carrito" element={<ShoppingCart />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
