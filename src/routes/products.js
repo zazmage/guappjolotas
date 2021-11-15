@@ -18,7 +18,6 @@ const Products = () => {
   const location = useLocation();
   return (
     <div>
-      <h2>Soy el products</h2>
       {data === null ? (
         <p>Cargando...</p>
       ) : location.pathname === "/" ? (
@@ -40,6 +39,7 @@ const Products = () => {
           })
           .map((el) => (
             <Link
+              style={{ textDecoration: "none" }}
               key={el.id}
               to={`/compras/${location.pathname.slice(1)}?product=${el.name}`}
             >

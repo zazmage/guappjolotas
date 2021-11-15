@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, NavLink, useSearchParams, Link } from "react-router-dom";
-import { Drnwb, GlobalStyle, MainLogo } from "./styles/StyledComp";
+import { Drnwb, GlobalStyle, InputSearch, MainLogo } from "./styles/StyledComp";
 import "./styles/App.scss";
 
 // https://guappjolotas-ac.herokuapp.com/products/
@@ -27,24 +27,52 @@ const App = () => {
         </Drnwb>
       </header>
       <main>
-        <h1>Soy App</h1>
-        <input
-          type="text"
-          value={searchParams.get("filter") || ""}
-          onChange={(e) => {
-            let filter = e.target.value;
-            if (filter) {
-              setSearchParams({ filter });
-            } else {
-              setSearchParams({});
+        <h1>Nada como una Guajolota para empezar el día</h1>
+        <InputSearch>
+          <img
+            src="https://res.cloudinary.com/deildujgx/image/upload/v1636987928/guappjolotas/search_v4ujum.svg"
+            alt="Buscar"
+          />
+          <input
+            type="text"
+            value={searchParams.get("filter") || ""}
+            placeholder="Sabor de guajolota, bebida..."
+            onChange={(e) => {
+              let filter = e.target.value;
+              if (filter) {
+                setSearchParams({ filter });
+              } else {
+                setSearchParams({});
+              }
+            }}
+          />
+        </InputSearch>
+        <Drnwb>
+          <NavLink
+            to="/guajolotas"
+            className={({ isActive }) =>
+              isActive ? "selected" : "not-selected"
             }
-          }}
-        />
-        <nav>
-          <NavLink to="/guajolotas">Guajolotas</NavLink>
-          <NavLink to="/bebidas">Bebidas</NavLink>
-          <NavLink to="/tamales">tamales</NavLink>
-        </nav>
+          >
+            Guajolotas
+          </NavLink>
+          <NavLink
+            to="/bebidas"
+            className={({ isActive }) =>
+              isActive ? "selected" : "not-selected"
+            }
+          >
+            Bebidas
+          </NavLink>
+          <NavLink
+            to="/tamales"
+            className={({ isActive }) =>
+              isActive ? "selected" : "not-selected"
+            }
+          >
+            tamales
+          </NavLink>
+        </Drnwb>
         <Outlet />
       </main>
     </>
