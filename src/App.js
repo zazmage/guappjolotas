@@ -1,5 +1,7 @@
 import React from "react";
 import { Outlet, NavLink, useSearchParams, Link } from "react-router-dom";
+import { Drnwb, GlobalStyle, MainLogo } from "./styles/StyledComp";
+import "./styles/App.scss";
 
 // https://guappjolotas-ac.herokuapp.com/products/
 
@@ -7,14 +9,22 @@ const App = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   return (
     <>
+      <GlobalStyle />
       <header>
-        <Link to="/">
-          <img
-            src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png"
-            alt="Guappjolotas"
-          />
-        </Link>
-        <Link to="/carrito">Carrito</Link>
+        <Drnwb className={"main-header"}>
+          <Link to="/">
+            <MainLogo
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png"
+              alt="Guappjolotas"
+            />
+          </Link>
+          <Link to="/carrito">
+            <img
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1636911028/guappjolotas/shopping-cart_dzofne.svg"
+              alt="Guappjolotas"
+            />
+          </Link>
+        </Drnwb>
       </header>
       <main>
         <h1>Soy App</h1>
