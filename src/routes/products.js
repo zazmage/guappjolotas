@@ -7,7 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import Product from "./Product";
+import Product from "../components/Product";
 
 // https://guappjolotas-ac.herokuapp.com/products/
 

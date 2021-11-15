@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import Combo from "../components/Combo";
 import Flavors from "../components/Flavors";
 import Slider from "../components/Slider";
@@ -12,6 +12,12 @@ const Purchase = () => {
   const [searchParams] = useSearchParams();
   return (
     <div>
+      <Link to="/">
+        <img
+          src="https://res.cloudinary.com/deildujgx/image/upload/v1636935363/guappjolotas/chevron-left_wrpxtc.svg"
+          alt="Atrás"
+        />
+      </Link>
       <div>
         {data === null ? (
           <p>Cargando...</p>
