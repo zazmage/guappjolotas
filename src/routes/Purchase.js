@@ -4,20 +4,32 @@ import Combo from "../components/Combo";
 import Flavors from "../components/Flavors";
 import Slider from "../components/Slider";
 import { useFetch } from "../hooks/useFetch";
+import "../styles/Purchase.css";
 
 const Purchase = () => {
   const url = "https://guappjolotas-ac.herokuapp.com/products/";
   const { data } = useFetch(url);
   const params = useParams();
   const [searchParams] = useSearchParams();
+
   return (
     <div>
-      <Link to="/">
-        <img
-          src="https://res.cloudinary.com/deildujgx/image/upload/v1636935363/guappjolotas/chevron-left_wrpxtc.svg"
-          alt="Atrás"
-        />
-      </Link>
+      <header className="purchase-header">
+        <div>
+          <Link to="/">
+            <img
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1636935363/guappjolotas/chevron-left_wrpxtc.svg"
+              alt="Atrás"
+            />
+          </Link>
+          <Link to="/carrito">
+            <img
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1636911028/guappjolotas/shopping-cart_dzofne.svg"
+              alt="Guappjolotas"
+            />
+          </Link>
+        </div>
+      </header>
       <div>
         {data === null ? (
           <p>Cargando...</p>
@@ -29,8 +41,7 @@ const Purchase = () => {
           />
         )}
       </div>
-      <h2>Sabor</h2>
-      <div></div>
+
       <div>
         {data === null ? (
           <p>Cargando...</p>
@@ -42,7 +53,7 @@ const Purchase = () => {
           />
         )}
       </div>
-      <h2>Guajolocombo</h2>
+
       <div>
         {data === null ? (
           <p>Cargando...</p>
@@ -54,7 +65,13 @@ const Purchase = () => {
           />
         )}
       </div>
-      <button>Agregar al carrito</button>
+
+      <div className="add-cart">
+        <button>
+          <h4>Agregar al carrito</h4>
+          <p>${"precio"}</p>
+        </button>
+      </div>
     </div>
   );
 };

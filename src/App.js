@@ -1,5 +1,11 @@
 import React from "react";
-import { Outlet, NavLink, useSearchParams, Link } from "react-router-dom";
+import {
+  Outlet,
+  NavLink,
+  useSearchParams,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { Drnwb, GlobalStyle, InputSearch, MainLogo } from "./styles/StyledComp";
 import "./styles/App.scss";
 
@@ -7,11 +13,12 @@ import "./styles/App.scss";
 
 const App = () => {
   let [searchParams, setSearchParams] = useSearchParams();
+  let location = useLocation().pathname;
   return (
     <>
       <GlobalStyle />
       <header>
-        <Drnwb className={"main-header"}>
+        <Drnwb className="main-header">
           <Link to="/">
             <MainLogo
               src="https://res.cloudinary.com/deildujgx/image/upload/v1636911027/guappjolotas/logo_qbiwpp.png"
@@ -21,7 +28,7 @@ const App = () => {
           <Link to="/carrito">
             <img
               src="https://res.cloudinary.com/deildujgx/image/upload/v1636911028/guappjolotas/shopping-cart_dzofne.svg"
-              alt="Guappjolotas"
+              alt="Carrito de compras"
             />
           </Link>
         </Drnwb>
@@ -51,7 +58,11 @@ const App = () => {
           <NavLink
             to="/guajolotas"
             className={({ isActive }) =>
-              isActive ? "selected" : "not-selected"
+              location === "/"
+                ? "selected"
+                : isActive
+                ? "selected"
+                : "not-selected"
             }
           >
             Guajolotas

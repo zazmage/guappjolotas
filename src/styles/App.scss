@@ -1,11 +1,9 @@
-$primary: "#FA4A0C";
-$secundary: "#E7E7E7";
-$primaryText: "black";
-$secundaryText: "#9A9A9D";
-$background: "#F2F2F2";
-$selected: "#F25F4C";
-
-// Mis variables no funcionan creo que hay muchos bugs de sass en react :c
+$primary: #fa4a0c;
+$secundary: #e7e7e7;
+$primaryText: black;
+$secundaryText: #9a9a9d;
+$background: #f2f2f2;
+$selected: #f25f4c;
 
 .main-header {
   margin-bottom: 32px;
@@ -16,8 +14,8 @@ $selected: "#F25F4C";
   font-size: 17px;
   font-weight: 400;
   text-decoration: none;
-  border-bottom: 3px #fa4a0c solid;
-  color: #fa4a0c;
+  border-bottom: 3px $selected solid;
+  color: $primary;
   margin-bottom: 24px;
   &:visited {
     color: $primary;
@@ -29,10 +27,10 @@ $selected: "#F25F4C";
   height: 32px;
   font-size: 17px;
   font-weight: 400;
-  color: #9a9a9d;
+  color: $secundaryText;
   margin-bottom: 24px;
   &:visited {
     text-decoration: none;
-    color: #9a9a9d;
+    color: $secundaryText;
   }
 }
