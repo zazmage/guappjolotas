@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams, Link } from "react-router-dom";
 import Combo from "../components/Combo";
 import Flavors from "../components/Flavors";
@@ -11,6 +11,33 @@ const Purchase = () => {
   const { data } = useFetch(url);
   const params = useParams();
   const [searchParams] = useSearchParams();
+  const [shopping, setShopping] = useState({
+    product: "",
+    amount: 1,
+    combo: [],
+  });
+
+  useEffect(() => {
+    if (data !== null && data !== undefined) {
+      setShopping({
+        ...shopping,
+        product: data[params.productType].filter(
+          (el) => el.name === searchParams.get("product")
+        )[0],
+        amount: 1,
+      });
+    }
+  }, [data, searchParams.get("product")]);
+
+  const handleSubmit = () => {
+    if (localStorage.getItem("shoppingCart")) {
+      const previousStorage = JSON.parse(localStorage.getItem("shoppingCart"));
+      previousStorage.push(shopping);
+      localStorage.setItem("shoppingCart", JSON.stringify(previousStorage));
+    } else {
+      localStorage.setItem("shoppingCart", JSON.stringify([shopping]));
+    }
+  };
 
   return (
     <div>
@@ -38,6 +65,8 @@ const Purchase = () => {
             data={data}
             params={params.productType}
             product={searchParams.get("product")}
+            shopping={shopping}
+            setShopping={setShopping}
           />
         )}
       </div>
@@ -57,19 +86,34 @@ const Purchase = () => {
       <div>
         {data === null ? (
           <p>Cargando...</p>
+        ) : //vas a programar aqui!!
+        params.productType === "bebidas" ? (
+          <Combo
+            data={data}
+            params="guajolotas"
+            product={searchParams.get("product")}
+            shopping={shopping}
+            setShopping={setShopping}
+          />
         ) : (
           <Combo
             data={data}
-            params={params.productType}
+            params="bebidas"
             product={searchParams.get("product")}
+            shopping={shopping}
+            setShopping={setShopping}
           />
         )}
       </div>
 
       <div className="add-cart">
-        <button>
+        <button onClick={handleSubmit}>
           <h4>Agregar al carrito</h4>
-          <p>${"precio"}</p>
+          <p>
+            $
+            {shopping.product.price * shopping.amount +
+              shopping.combo.reduce((counter, el) => counter + el.price, 0)}
+          </p>
         </button>
       </div>
     </div>

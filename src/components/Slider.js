@@ -3,7 +3,7 @@ import SliderComp from "./SliderComp";
 import { ProdInfo, SliderCont } from "../styles/StyledComp";
 import { useSearchParams } from "react-router-dom";
 
-const Slider = ({ data, params, product }) => {
+const Slider = ({ data, params, product, shopping, setShopping }) => {
   //console.log(data, params, product);
   //const currentProd = data[params].filter((el) => el.name === product)[0];
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -34,6 +34,22 @@ const Slider = ({ data, params, product }) => {
     return toRender;
   };
 
+  const handleSum = (e) =>
+    setShopping({
+      ...shopping,
+      amount: shopping.amount + 1,
+      product: currentProduct,
+    });
+
+  const handleRest = (e) => {
+    if (shopping.amount !== 1)
+      setShopping({
+        ...shopping,
+        amount: shopping.amount - 1,
+        product: currentProduct,
+      });
+  };
+
   const prodToRender = getToRender();
 
   return (
@@ -50,9 +66,18 @@ const Slider = ({ data, params, product }) => {
           <h3>Guajolota de Tamal {currentProduct.name}</h3>
           <p>${currentProduct.price} MXN</p>
           <div>
-            <button>-</button>
-            <p>1</p>
-            <button>+</button>
+            <img
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1637280827/guappjolotas/minus-circle_nanuhl.svg"
+              alt="Menos"
+              onClick={handleRest}
+              style={{ opacity: shopping.amount === 1 ? 0.4 : 1 }}
+            />
+            <p>{shopping.amount}</p>
+            <img
+              src="https://res.cloudinary.com/deildujgx/image/upload/v1637280740/guappjolotas/plus-circle_jxxjk5.svg"
+              alt="Mas"
+              onClick={handleSum}
+            />
           </div>
         </ProdInfo>
       )}

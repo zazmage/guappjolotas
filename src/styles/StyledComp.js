@@ -138,7 +138,7 @@ export const ProdInfo = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 312px;
-  height: 207px;
+  height: auto;
   margin: 0 auto 32px auto;
   font-family: Inter, sans-serif;
   & h3 {
@@ -162,13 +162,6 @@ export const ProdInfo = styled.div`
     width: 190px;
     height: 72px;
     border-radius: 20px;
-    & button {
-      border-radius: 50%;
-      border: 3px solid;
-      width: 40px;
-      height: 40px;
-      font-size: 32px;
-    }
     & p {
       color: ${colors.primaryText};
       margin: 0;
@@ -219,7 +212,7 @@ export const ComboCont = styled.div`
 export const ComboItem = styled.div`
   margin: 0 8px 8px 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
   width: 115px;
   height: 130px;
