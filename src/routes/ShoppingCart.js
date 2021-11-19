@@ -8,6 +8,7 @@ const ShoppingCart = () => {
   const getProdTable = () => {
     const productNames = [];
     const tableValues = {};
+    const finalValues = [];
     currentShopping.forEach((i) => {
       if (!(i.product.name in productNames)) {
         productNames.push(i.product.name);
@@ -29,9 +30,14 @@ const ShoppingCart = () => {
           tableValues[i.product.name].amount * j.price;
       });
     });
+    for (const key in tableValues) {
+      finalValues.push([key, tableValues[key].amount, tableValues[key].price]);
+    }
+    //console.log(finalValues);
     // console.log(tableValues);
-    return tableValues;
+    return finalValues;
   };
+  //getProdTable();
   //console.log(currentShopping);
 
   return (
@@ -55,7 +61,15 @@ const ShoppingCart = () => {
                 <th>Precio</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {getProdTable().map((el) => (
+                <tr>
+                  <td>{el[0]}</td>
+                  <td>{el[1]}</td>
+                  <td>{el[2]}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         ) : (
           <div className="not-products">
