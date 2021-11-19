@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Products from "./routes/Products";
-import Purchase from "./routes/Purchase";
-import ShoppingCart from "./routes/ShoppingCart";
+import Products from "./routes/Products.js";
+import Purchase from "./routes/Purchase.js";
+import ShoppingCart from "./routes/ShoppingCart.js";
 
 ReactDOM.render(
   <React.StrictMode>
