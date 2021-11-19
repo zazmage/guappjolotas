@@ -63,10 +63,10 @@ const ShoppingCart = () => {
             </thead>
             <tbody>
               {getProdTable().map((el) => (
-                <tr>
+                <tr key={el[0]}>
                   <td>{el[0]}</td>
-                  <td>{el[1]}</td>
-                  <td>{el[2]}</td>
+                  <td className="centNumb">{el[1]}</td>
+                  <td className="centNumb">{el[2]}</td>
                 </tr>
               ))}
             </tbody>

@@ -258,6 +258,16 @@ export const ShopCart = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
+  table {
+    overflow: hidden;
+    height: 100%;
+    th {
+      text-align: center;
+    }
+    .centNumb {
+      text-align: center;
+    }
+  }
   button {
     color: var(--secundary);
     background-color: var(--primary);
